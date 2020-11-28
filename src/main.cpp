@@ -2,9 +2,18 @@
 
 #include <iostream>
 
+
+// The function is defined here
+void printHello()
+{
+  std::cout << "Hello function Wizard!\n";
+}
+
+
 int main(int argc, const char * argv[])
 {
-  std::cout << "Hello, Wizard!\n";
+  // The function is 'called' here..
+  printHello();
   return 0;
 }
 
