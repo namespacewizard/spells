@@ -1,8 +1,10 @@
 //  Created by Namespace Wizard on 28/11/2020.
 
+// cmath is a 'library' that adds in mathematics functions
+#include <cmath>
 #include <iostream>
 
-// https://www.w3schools.com/cpp/cpp_for_loop.asp
+// https://en.cppreference.com/w/cpp/numeric/math/sqrt
 
 // printNumber is a function which takes an int, called 'number' as a parameter.
 // The return type is a boolean, or bool, which is either true or false.
@@ -16,7 +18,10 @@ bool divides(int smallNumber, int bigNumber)
 // which has the value true or false
 bool isPrime(int number)
 {
-  for (int divisor = 2; divisor < number; divisor++)
+  // Here we call a function 'sqrt' from the cmath library
+  // 'std' is for standard as the function is within the namespace 'std'
+  int squareRootOfNumber = std::sqrt(number);
+  for (int divisor = 2; divisor <= squareRootOfNumber; divisor++)
   {
     if (divides(divisor, number))
     {
