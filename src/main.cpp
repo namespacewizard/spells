@@ -3,17 +3,22 @@
 #include <iostream>
 
 
-// The function is defined here
-void printHello()
+// printNumber is a function which takes an int, called 'number' as a parameter
+void printNumber(int number)
 {
-  std::cout << "Hello function Wizard!\n";
+  std::cout << "The number is " << number << "\n";
 }
 
 
 int main(int argc, const char * argv[])
 {
-  // The function is 'called' here..
-  printHello();
+  // 'one' is the name of a variable and it is declared here
+  // The type of the variable is an `int` and it is initialised with value 1
+  int one = 1;
+  
+  // Here we call printNumber by passing our variable to the function
+  printNumber(one);
+  
   return 0;
 }
 
