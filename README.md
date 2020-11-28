@@ -1,12 +1,6 @@
 # spells
 Easy steps for Learning C++
 
-First we'll need to get CMake. Download it from https://cmake.org/download/
-
-If you install this, open the Terminal application:
-type: `which cmake`
-and this should print out something like:
-/usr/local/bin/cmake
 
 This tutorial is a big branch.
 To get started you need to copy it to your computer.
@@ -45,4 +39,46 @@ To run the program:
 
 This should print out something below hello...
 
+# spell 1.1
 
+Lets' try to build with CMake to make it easier to build and run the program:
+
+First we'll need to get CMake. Download it from https://cmake.org/download/
+https://ncona.com/2019/03/building-a-cpp-project-with-cmake/
+
+If you install this, open the Terminal application:
+type: `which cmake`
+and this should print out something like:
+`/usr/local/bin/cmake`
+
+We need to make a special folder ourselves
+In Terminal type the following:
+`mkdir build` (to make the folder)
+`cd build` (to change directory to the folder called build)
+`cmake ..` (to configure CMake to be ready to build the program)
+
+You should see:
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/<you>/Programming/namespacewizard/spells/build
+
+`make` to build the program
+[ 50%] Building CXX object CMakeFiles/Spell.dir/src/main.cpp.o
+[100%] Linking CXX executable Spell
+[100%] Built target Spell
+
+`./Spell` to run the program which should print a message.
+
+
+You can also type
+`cmake .. -GXcode`
+
+output:
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/<you>/Programming/namespacewizard/spells/build
+
+to create an XCode Project that can be opened
+`open Spell1.xcodeproj`
+
+and hit the Play button called Run in the top left corner. This will build and run the program and you should see a message below.
