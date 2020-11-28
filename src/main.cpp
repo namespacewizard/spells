@@ -2,31 +2,19 @@
 
 #include <iostream>
 
-// https://www.w3schools.com/cpp/cpp_conditions.asp
-
-
-// printNumber is a function which takes an int, called 'number' as a parameter
-bool divides(int smallNumber, int bigNumber)
-{
-  return (bigNumber % smallNumber) == 0;
-}
+// https://www.w3schools.com/cpp/cpp_for_loop.asp
 
 
 int main(int argc, const char * argv[])
 {
-  // try changing these numbers...
-  int smallNumber = 3;
-  int bigNumber = 6;
+  int bigNumber = 10;
   
-  // The if statement checks whether the 'expression' in the brackets is true
-  // and if it is, the code progresses inside the loop
-  if (divides(smallNumber, bigNumber))
+  // The for loop initializes 'int number = 1;'
+  // Each loop it tests if 'number < bigNumber', if so it keeps on going
+  // and each time it goes round it, it does 'number = number + 1'
+  for (int number = 1; number <= bigNumber; number = number + 1)
   {
-    std::cout << smallNumber << " divides " << bigNumber << "\n";
-  }
-  else
-  {
-    std::cout << smallNumber << " does not divide " << bigNumber << "\n";
+    std::cout << "printing " << number << "\n";
   }
   
   return 0;
