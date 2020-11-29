@@ -8,19 +8,14 @@
 
 bool divides(int smallNumber, int bigNumber)
 {
-  bool dividesNumber = (bigNumber % smallNumber) == 0;
-  if (dividesNumber)
-  {
-    std::cout << smallNumber << " divides " << bigNumber << ". ";
-  }
-  else
-  {
-    std::cout << smallNumber << " does not divide " << bigNumber << ". ";
-  }
-
   return (bigNumber % smallNumber) == 0;
 }
 
+// Euclids algorithm: for two numbers x,y where y > x:
+// write y = a*x + remainder
+// The greatest common divisor divides x, and divides y, so it must divide b
+// If b = 0, then the divisor is x, otherwise it is the greatest divisor of
+// b and x
 
 int findGreatestCommonDivisor(int number, int secondNumber)
 {
@@ -30,19 +25,20 @@ int findGreatestCommonDivisor(int number, int secondNumber)
   }
   
   // we know that secondNumber >= number
-  int greatestCommonDivisor = 1;
-  
-  // Test all the numbers between 1 and number
-  for (int i = 1; i <= number; i++)
+
+  int divisor = secondNumber / number;
+  int remainder = secondNumber % number;
+  std::cout <<  secondNumber << " = " << divisor << " * " << number << " + "
+             << remainder << "\n";
+
+  if (divides(number, secondNumber))
   {
-    if (divides(i, number) && divides(i, secondNumber))
-    {
-      greatestCommonDivisor = i;
-    }
-    std::cout << "\n";
+    return number;
   }
-  
-  return greatestCommonDivisor;
+  else
+  {
+    return findGreatestCommonDivisor(remainder, number);
+  }
 }
 
 
