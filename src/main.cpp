@@ -10,101 +10,65 @@
 // https://en.cppreference.com/w/cpp/numeric/math/sqrt
 // https://en.cppreference.com/w/cpp/container/vector
 
+
 // printNumber is a function which takes an int, called 'number' as a parameter.
 // The return type is a boolean, or bool, which is either true or false.
 bool divides(int smallNumber, int bigNumber)
 {
-  return (bigNumber % smallNumber) == 0;
+    return (bigNumber % smallNumber) == 0;
 }
 
 
-// The function called 'isPrime' will return a boolean, or bool,
-// which has the value true or false
-bool isPrime(int number)
+int findGreatestCommonDivisor(int number, int secondNumber)
 {
-  // Here we call a function 'sqrt' from the cmath library
-  // 'std' is for standard as the function is within the namespace 'std'
-  int squareRootOfNumber = std::sqrt(number);
-  for (int divisor = 2; divisor <= squareRootOfNumber; divisor++)
+  if (number > secondNumber)
   {
-    if (divides(divisor, number))
-    {
-      // a smaller number divides 'number' so it is not prime
-      return false;
-    }
+    return findGreatestCommonDivisor(secondNumber, number);
   }
-
-  // we couldn't find a smaller number to divide number
-  return true;
-}
-
-
-// The function 'findPrimes' returns a std::vector of primes
-// \param largestPrimeToFind is the largest prime that will
-// be held in the vector
-std::vector<int> findPrimes(int largestPrimeToFind)
-{
-  // The vector is called 'primes' and holds types 'int'
-  // here it is empty. Although we don't know how many primes
-  // the vector needs to hold, it can expand. This is called
-  // dynamic memory as it can change size.
-  std::vector<int> primes;
-
-  for (int number = 2; number <= largestPrimeToFind; number++)
+  
+  // we know that secondNumber >= number
+  int greatestCommonDivisor = 1;
+  
+  // Test all the numbers between 1 and number
+  for (int i = 1; i <= number; i++)
   {
-    if (isPrime(number))
+    if (divides(i, number) && divides(i, secondNumber))
     {
-      // push_back is a function that adds an element to the 'vector'
-      primes.push_back(number);
+      greatestCommonDivisor = i;
     }
   }
   
-  return primes;
-}
-
-
-// Returns the first of two primes which will add up to the parameter 'evenNumber'
-int findGoldbachPrime(int evenNumber)
-{
-  std::vector<int> primes = findPrimes(evenNumber);
-  for (size_t index = 0; index < primes.size(); index++)
-  {
-    int firstPrime = primes[index];
-    int possiblePrime = evenNumber - firstPrime;
-    if (isPrime(possiblePrime))
-    {
-      return firstPrime;
-    }
-  }
-  
-  // this will never happen
-  return -1;
+  return greatestCommonDivisor;
 }
 
 
 int main(int argc, const char * argv[])
 {
-  int evenNumber;
-  std::cout << "Click here and type in an even number, then press return.\n";
-  std::cin >> evenNumber;
-  
-  bool isBiggerThanOne = evenNumber > 1;
-  bool isEven = evenNumber % 2 == 0;
+  int number;
+  std::cout << "Click here and type in a number, then press return.\n";
+  std::cin >> number;
+
   // The '&&' sign stands for 'and'
   // if the number is bigger than one and is even, we say "67you typed in..."
-  if (isBiggerThanOne && isEven)
+  if (number >= 1)
   {
-    // Every even number is the sum of two primes (Goldbach's conjecture).
-    // Let's use a function to find them
-    std::cout << "You typed in " << evenNumber << ". \n";
-    int smallerPrime = findGoldbachPrime(evenNumber);
-    int largerPrime = evenNumber - smallerPrime;
-    
-    std::cout << "This is the sum of " << smallerPrime << " plus " << largerPrime << ".\n";
+    int secondNumber;
+    std::cout << "Now type in a second number, then press return.\n";
+    std::cin >> secondNumber;
+    if (secondNumber >= 1)
+    {
+      int greatestCommonDivisor = findGreatestCommonDivisor(number, secondNumber);
+      std::cout << "The greatest common divisor of " << number << " and "
+                 << secondNumber << " is " << greatestCommonDivisor << "\n";
+    }
+    else
+    {
+      std::cout << "That is not a number\n";
+    }
   }
   else
   {
-    std::cout << "That is not an even number\n";
+    std::cout << "That is not a number\n";
   }
   
   return 0;
