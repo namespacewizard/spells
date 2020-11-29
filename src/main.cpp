@@ -6,6 +6,7 @@
 // vector is part of the standard library and stores a sequence of elements
 #include <vector>
 
+// https://en.cppreference.com/w/cpp/io/cin
 // https://en.cppreference.com/w/cpp/numeric/math/sqrt
 // https://en.cppreference.com/w/cpp/container/vector
 
@@ -64,16 +65,27 @@ std::vector<int> findPrimes(int largestPrimeToFind)
 
 int main(int argc, const char * argv[])
 {
-  int largestPrimeToFind = 20;
-  std::vector<int> primes = findPrimes(largestPrimeToFind);
+  int evenNumber;
+  std::cout << "Click here and type in an even number, then press return.\n";
+  std::cin >> evenNumber;
   
-  // Type 'size_t' is a positive 'int'
-  for (size_t index = 0; index < primes.size(); index++)
+  bool isBiggerThanOne = evenNumber > 1;
+  bool isEven = evenNumber % 2 == 0;
+  // The '&&' sign stands for 'and'
+  // if the number is bigger than one and is even, we say "67you typed in..."
+  if (isBiggerThanOne && isEven)
   {
-    // the vector has a series of elements. The elements are accessed
-    // by the square brackets. primes[0] is the first element, primes[1]
-    // is the second element, etc.
-    std::cout << primes[index] << " is prime\n";
+    std::cout << "Here are the primes below " << evenNumber << "\n";
+    std::vector<int> primes = findPrimes(evenNumber);
+    for (size_t index = 0; index < primes.size(); index++)
+    {
+      std::cout << primes[index] << ", ";
+    }
+    std::cout << "\n";
+  }
+  else
+  {
+    std::cout << "That is not an even number\n";
   }
   
   return 0;
