@@ -15,7 +15,16 @@
 // The return type is a boolean, or bool, which is either true or false.
 bool divides(int smallNumber, int bigNumber)
 {
-    return (bigNumber % smallNumber) == 0;
+  bool dividesNumber = (bigNumber % smallNumber) == 0;
+  if (dividesNumber)
+  {
+    std::cout << smallNumber << " divides " << bigNumber << ". ";
+  }
+  else
+  {
+    std::cout << smallNumber << " does not divide " << bigNumber << ". ";
+  }
+  return (bigNumber % smallNumber) == 0;
 }
 
 
@@ -32,10 +41,13 @@ int findGreatestCommonDivisor(int number, int secondNumber)
   // Test all the numbers between 1 and number
   for (int i = 1; i <= number; i++)
   {
-    if (divides(i, number) && divides(i, secondNumber))
+    bool dividesFirstNumber = divides(i, number);
+    bool dividesSecondNumber = divides(i, secondNumber);
+    if (dividesFirstNumber && dividesSecondNumber)
     {
       greatestCommonDivisor = i;
     }
+    std::cout << "\n";
   }
   
   return greatestCommonDivisor;
