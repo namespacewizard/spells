@@ -1,11 +1,13 @@
 //  Created by Namespace Wizard on 28/11/2020.
 
+#include <algorithm>
 // cmath is a 'library' that adds in mathematics functions
 #include <cmath>
 #include <iostream>
 // vector is part of the standard library and stores a sequence of elements
 #include <vector>
 
+// https://en.cppreference.com/w/cpp/algorithm/find
 // https://en.cppreference.com/w/cpp/io/cin
 // https://en.cppreference.com/w/cpp/numeric/math/sqrt
 // https://en.cppreference.com/w/cpp/container/vector
@@ -71,15 +73,14 @@ int findGoldbachPrime(int evenNumber)
   {
     int firstPrime = primes[index];
     int possiblePrime = evenNumber - firstPrime;
-    
+
     // We haver already stored the prime numbers less than 'evenNumber'.
-    // Use a for loop to check the stored primes instead
-    for (size_t secondIndex = index; secondIndex < primes.size(); secondIndex++)
+    // std::find returns an iterator to the element if it is found
+    auto iFoundPrime = std::find(primes.begin(), primes.end(), possiblePrime);
+    // if the element was not found it points to primes.end()
+    if (iFoundPrime != primes.end())
     {
-      if (primes[secondIndex] == possiblePrime)
-      {
-        return firstPrime;
-      }
+      return firstPrime;
     }
   }
   
