@@ -1,8 +1,10 @@
 //  Created by Namespace Wizard on 28/11/2020.
 
+// To include assert we want the header cassert
+#include <cassert>
 #include <iostream>
 
-// https://en.cppreference.com/w/cpp/algorithm/find
+// https://en.cppreference.com/w/cpp/error/assert
 // https://en.cppreference.com/w/cpp/io/cin
 
 
@@ -24,21 +26,21 @@ int findGreatestCommonDivisor(int number, int secondNumber)
     return findGreatestCommonDivisor(secondNumber, number);
   }
   
-  // we know that secondNumber >= number
+  // we know that secondNumber >= number.
+  // assert will crash or break is it is ever false. Try deleting the part above and
+  // see what happens if the first number is bigger...
+  assert(number <= secondNumber);
 
+  bool numberDividesSecondNumber = divides(number, secondNumber);
   int divisor = secondNumber / number;
   int remainder = secondNumber % number;
   std::cout <<  secondNumber << " = " << divisor << " * " << number << " + "
              << remainder << "\n";
 
-  if (divides(number, secondNumber))
-  {
-    return number;
-  }
-  else
-  {
-    return findGreatestCommonDivisor(remainder, number);
-  }
+  // This is a 'ternary' and has the form
+  // y = expression ? a : b
+  // if expression is true, then y is a, otherwise it is b.
+  return numberDividesSecondNumber ? number : findGreatestCommonDivisor(remainder, number);
 }
 
 
