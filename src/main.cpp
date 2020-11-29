@@ -63,6 +63,25 @@ std::vector<int> findPrimes(int largestPrimeToFind)
 }
 
 
+// Returns the first of two primes which will add up to the parameter 'evenNumber'
+int findGoldbachPrime(int evenNumber)
+{
+  std::vector<int> primes = findPrimes(evenNumber);
+  for (size_t index = 0; index < primes.size(); index++)
+  {
+    int firstPrime = primes[index];
+    int possiblePrime = evenNumber - firstPrime;
+    if (isPrime(possiblePrime))
+    {
+      return firstPrime;
+    }
+  }
+  
+  // this will never happen
+  return -1;
+}
+
+
 int main(int argc, const char * argv[])
 {
   int evenNumber;
@@ -75,13 +94,13 @@ int main(int argc, const char * argv[])
   // if the number is bigger than one and is even, we say "67you typed in..."
   if (isBiggerThanOne && isEven)
   {
-    std::cout << "Here are the primes below " << evenNumber << "\n";
-    std::vector<int> primes = findPrimes(evenNumber);
-    for (size_t index = 0; index < primes.size(); index++)
-    {
-      std::cout << primes[index] << ", ";
-    }
-    std::cout << "\n";
+    // Every even number is the sum of two primes (Goldbach's conjecture).
+    // Let's use a function to find them
+    std::cout << "You typed in " << evenNumber << ". \n";
+    int smallerPrime = findGoldbachPrime(evenNumber);
+    int largerPrime = evenNumber - smallerPrime;
+    
+    std::cout << "This is the sum of " << smallerPrime << " plus " << largerPrime << ".\n";
   }
   else
   {
