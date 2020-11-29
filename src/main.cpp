@@ -71,9 +71,15 @@ int findGoldbachPrime(int evenNumber)
   {
     int firstPrime = primes[index];
     int possiblePrime = evenNumber - firstPrime;
-    if (isPrime(possiblePrime))
+    
+    // We haver already stored the prime numbers less than 'evenNumber'.
+    // Use a for loop to check the stored primes instead
+    for (size_t secondIndex = index; secondIndex < primes.size(); secondIndex++)
     {
-      return firstPrime;
+      if (primes[secondIndex] == possiblePrime)
+      {
+        return firstPrime;
+      }
     }
   }
   
